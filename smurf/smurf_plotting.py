@@ -28,6 +28,7 @@ matplotlib.use('Agg')  # None-interactive plots do not need tk
 import matplotlib.pyplot as plt
 import numpy as np
 import tensorflow as tf
+import cv2
 
 from smurf import smurf_utils
 
@@ -183,3 +184,15 @@ def complete_paper_plot(plot_dir,
     post_imshow('ground_truth_occlusion', plot_dir)
 
   plt.close('all')
+  
+def save_flo_img(plot_dir, index, image1, flow_uv,):
+
+  #warp = smurf_utils.flow_to_warp(tf.convert_to_tensor(flow_uv))
+  #image1_reconstruction = smurf_utils.resample(tf.expand_dims(image2, axis=0),
+  #                                             tf.expand_dims(warp, axis=0))[0]
+  flow_uv = -flow_uv[:, :, ::-1]
+  flow = flow_to_rgb(flow_uv)    
+  img_flo = cv2.addWeighted(src1=image1, alpha=0.5, src2=flow, beta=0.5, gamma=0)
+  
+  result_img = cv2.hconcat([image1, flow, img_flo])
+  cv2.imwrite(plot_dir + "/" + str(index).zfill(5) + ".png", result_img)

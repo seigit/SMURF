@@ -31,9 +31,9 @@ import gin
 
 import tensorflow as tf
 
-from smurf import smurf_flags  # pylint:disable=unused-import
-from smurf import smurf_plotting
-from smurf import smurf_evaluator
+import smurf_flags  # pylint:disable=unused-import
+import smurf_plotting
+import smurf_evaluator
 
 try:
   import cv2  # pylint:disable=g-import-not-at-top

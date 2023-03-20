@@ -30,7 +30,7 @@ import numpy as np
 import tensorflow as tf
 import cv2
 
-from smurf import smurf_utils
+import smurf_utils
 
 # How much to scale motion magnitude in visualization.
 _FLOW_SCALING_FACTOR = 50.0

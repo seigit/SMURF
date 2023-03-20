@@ -26,12 +26,12 @@ import numpy as np
 import scipy.ndimage
 import tensorflow as tf
 
-from smurf import smurf_plotting
-from smurf.data import data_utils
+import smurf_plotting
+from data import data_utils
 # pylint:disable=unused-import
-from smurf.data.data_utils import evaluate
-from smurf.data.data_utils import list_eval_keys
-from smurf.data_conversion_scripts import conversion_utils
+from data.data_utils import evaluate
+from data.data_utils import list_eval_keys
+from data_conversion_scripts import conversion_utils
 
 
 def make_dataset(path,
@@ -45,7 +45,7 @@ def make_dataset(path,
                  include_segments=False,
                  repeat=None,
                  seed=41):
-  """Make a dataset for training or evaluating SMURF.
+  """Make a dataset for training or evaluating 
 
   Args:
     path: string, in the format of 'some/path/dir1,dir2,dir3' to load all files

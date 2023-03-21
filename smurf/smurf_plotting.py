@@ -189,9 +189,14 @@ def save_flo_img(plot_dir, index, image1, flow_uv,):
 
   #warp = smurf_utils.flow_to_warp(tf.convert_to_tensor(flow_uv))
   #image1_reconstruction = smurf_utils.resample(tf.expand_dims(image2, axis=0),
-  #                                             tf.expand_dims(warp, axis=0))[0]
+  #    
+  #image1 = tf.make_tensor_proto(image1)
+  image1 = image1.numpy() * 255.  
+  image1 = cv2.cvtColor(image1, cv2.COLOR_RGB2BGR)                                       #tf.expand_dims(warp, axis=0))[0]
   flow_uv = -flow_uv[:, :, ::-1]
-  flow = flow_to_rgb(flow_uv)    
+  flow = flow_to_rgb(flow_uv)
+  flow = np.array(flow) * 255.   
+  flow = cv2.cvtColor(flow, cv2.COLOR_RGB2BGR) 
   img_flo = cv2.addWeighted(src1=image1, alpha=0.5, src2=flow, beta=0.5, gamma=0)
   
   result_img = cv2.hconcat([image1, flow, img_flo])
